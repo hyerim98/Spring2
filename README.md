@@ -17,7 +17,7 @@
   - **주입** : 어떤 객체가 필요한 객체를 외부에서 밀어 넣는 것을 의미   
   - **외부에서 객체를 주입하는 이유** : 주입을 받는 입장에서는 어떤 객체인지 신경 쓸 필요가 없기 때문이다   
   - **ApplicationContext**가 필요한 객체들을 생성하고, 필요한 객체들을 주입하는 역할   
-<img src="https://user-images.githubusercontent.com/88373857/147059695-80f66cf2-066b-4a79-ae21-77f0608082eb.jpg" width="500" height="500">
+<img src="https://user-images.githubusercontent.com/88373857/147059695-80f66cf2-066b-4a79-ae21-77f0608082eb.jpg" width="500" height="300">
  
 * **AOP 지원**   
   - 반드시 처리가 필요한 부분(횡단 관심사)을 모듈로 분리하여 제작하는 것   
