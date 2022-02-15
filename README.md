@@ -26,19 +26,6 @@
 
 * **WAS의 종속적이지 않은 개발 환경**   
 
-## Annotation   
-**@Component** : 해당 클래스가 스프링에서 관리해야 할 대상임을 명시   
-**@Data** : setter, getter, 생성자, toString()등을 자동으로 생성, 결합한 형태로 한 번에 자주 사용되는 모든 메서드들을 생성(세부적인 설정이 필요 없는 경우라면 @Data를 이용)   
-**@Configuration** : 1개 이상의 @Bean을 제공하는 class의 경우 반드시 명시해야 함
-**@ComponentScan** : 해당 패캐지에 있는 클래스들을 조사하면서 @Component가 존재하는 클래스들을 객체로 생성하여 빈으로 관리(root-context.xml와 같은 역할 : bean)
-**@RunWith** : 지정한 클래스를 이용해 테스트 메소드를 수행하도록 지정   
-**@ContextConfiguration** : 스프링이 실행되면서 어떤 설정 정보를 읽어 들여야 하는지 명시   
-**@Logger** : Lombok을 이용해서 로그를 기록하는 Logger를 변수로 생성   
-**@Autowired** : 해당 인스턴스 변수가 스프링으로부터 자동으로 주입해 달라는 표시   
-**@Test** : JUnit에서 해당 메서드가 jUnit 상에서 단위 테스트의 대상인지를 알려줌   
-**@AllArgsConstructor** : 인스턴스 변수로 선언된 모든 것을 파라미터로 받는 생성자를 작성   
-**@RequiredArgsConstructor** : 여러 개의 인스턴스 변수들 중에서 특정한 변수에 대해서만 생성자를 작성(@NonNull, final이 붙은 인스턴스 변수에 대한 생성자를 만듦)   
-**@NonNull** : null값을 허용하지 않는다   
 
 
 
