@@ -16,14 +16,12 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- front 등록 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- controller 등록 -->
-	<context:component-scan base-package="org.zerock.controller" />
+	<context:component-scan base-package="com.sample.mybatis" />
 	
 	
 	
