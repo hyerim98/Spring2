@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- namespace : Mapper 인터페이스와 동일한 이름을 주는 것 -->
+<mapper namespace="org.zerock.mapper.BoardMapper">
+	<sql id="criteria">
+		<trim prefix="where " prefixOverrides="OR">
+			<foreach item='type' collection='typeArray'>
+				<trim prefix='OR'>
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+				
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+				
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- id : 메서드의 이름과 일치하게 작성 -->
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno > 0
+		]]>
+	</select>
+	
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+			select bno, title, content, writer, regdate, updatedate
+			from tbl_board
+		]]>
+		
+		<if test="typeArray != null">
+			<include refid="criteria"/>
+		</if>
+		
+		<![CDATA[
+			limit #{startPage}, #{endPage}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board 
+
+		<if test="typeArray != null">
+			<include refid="criteria"/>
+		</if>
+	</select>
+	
+	
+	<insert id="insert">
+		insert into tbl_board (title, content, writer) values (#{title}, #{content}, #{writer})
+	</insert>
+	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="Integer">
+			select Auto_increment from information_schema.tables where table_schema = 'spring2' and table_name = 'tbl_board'
+		</selectKey>
+		
+		insert into tbl_board (bno, title, content, writer) values (#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+	
+	<update id="update">
+		update tbl_board
+		set title = #{title}, content = #{content}, writer = #{writer}, updatedate = now()
+		where bno = #{bno}
+	</update>
+
+</mapper>
